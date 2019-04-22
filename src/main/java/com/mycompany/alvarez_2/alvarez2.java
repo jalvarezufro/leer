@@ -87,7 +87,7 @@ public class alvarez2 {
         try {
             Files.write(file, texto.getBytes());
         } catch (Exception e) {
-            System.out.println("The file could not be written");
+            System.out.println("El archivo no puede ser reescribido");
         }
     }
 
