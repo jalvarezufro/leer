@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package com.mycompany.alvarez_2;
 
 import java.io.File;
@@ -51,14 +48,16 @@ public class alvarez2 {
             boolean estampado = Boolean.parseBoolean(pedidos[3 * i + 2]);
             listaPedidos.add(new Polera(material, talla, estampado));
             
-            String reescribir = readFile("listado.csv") + "\n" + texto;
-            writeFile("listado.csv", reescribir);
+            String reescribir = readFile("Pedidos.csv") + "\n" + texto;
+            writeFile("Pedidos.csv", reescribir);
 
         }
 
     }
 
     public static void mostrar(ArrayList<Polera> listaPedidos) {//muestra un array completo y los atributos de sus objetos.
+        listaPedidos.clear();
+        agregarDenuevo(listaPedidos);
         for (int i = 0; i < listaPedidos.size(); i++) {
             System.out.println("Polera numero " + (i + 1));
             System.out.println(listaPedidos.get(i).getMaterial());
@@ -103,8 +102,8 @@ public class alvarez2 {
 
         listaPedidos.add(new Polera(material, talla, estampado));
         String reescribir;
-        reescribir = readFile("listado.csv") + "\n" + material + "," + talla + "," + estampado;
-        writeFile("listado.csv", reescribir);
+        reescribir = readFile("Pedidos.csv") + "\n" + material + "," + talla + "," + estampado;
+        writeFile("Pedidos", reescribir);
 
     }
 
@@ -114,6 +113,26 @@ public class alvarez2 {
         String texto = read.nextLine();
         return texto;
     }
+    
+    
+    public static void agregarDenuevo(ArrayList<Polera> listaPedidos) {//crea objetos en un array e ingresa informacion recibida de un archivo .csv
+        String texto = readFile("Pedidos.csv");
+        String[] pedidos = separarPedidos(texto);
+        int cantidadPedidos = contarPedidos(texto);
+
+        for (int i = 1; i < cantidadPedidos + 1; i++) {
+            String material = pedidos[3 * i];// Segun la estructura de el .csv el material siempre estara cada 3 espacios
+            String talla = pedidos[3 * i + +1];
+            boolean estampado = Boolean.parseBoolean(pedidos[3 * i + 2]);
+            listaPedidos.add(new Polera(material, talla, estampado));
+            
+            String reescribir = readFile("Pedidos.csv") + "\n" + texto;
+            writeFile("Pedidos.csv", reescribir);
+
+        }
+
+    }
+
 
     public static void menu(ArrayList<Polera> listaPedidos) {
         Scanner read = new Scanner(System.in);

@@ -20,13 +20,27 @@ import com.mycompany.alvarez_2.alvarez2;
 public class testMain {
 
     @Test
-    public void testSeparar() {
-        assertEquals("material", alvarez2.separarPedidos(alvarez2.readFile("listado.csv"))[0]);
-        assertEquals("polyester", alvarez2.separarPedidos(alvarez2.readFile("listado.csv"))[3]);
-        assertEquals("L", alvarez2.separarPedidos(alvarez2.readFile("listado.csv"))[13]);
-        assertEquals("M", alvarez2.separarPedidos(alvarez2.readFile("listado.csv"))[16]);
-        assertEquals("algodon", alvarez2.separarPedidos(alvarez2.readFile("listado.csv"))[6]);
+    public void testProblema1() {
+        assertEquals()
 
     }
-   
+
+    @Test
+    public void testProblema2() {
+        assertEquals()
+
+    }
+
+    @Test
+    public void testProblema3() {
+        assertEquals()
+
+    }
+
+    @Test
+    public void testProblema4() {
+        assertEquals()
+
+    }
+
 }
