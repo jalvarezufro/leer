@@ -38,7 +38,7 @@ public class alvarez2 {
 
     public static void agregarPedidos(ArrayList<Polera> listaPedidos) {//crea objetos en un array e ingresa informacion recibida de un archivo .csv
         String nombre = nombreArchivo();
-        String texto = readFile(nombre);
+        String texto = leerArchivo(nombre);
         String[] pedidos = separarPedidos(texto);
         int cantidadPedidos = contarPedidos(texto);
 
@@ -48,8 +48,8 @@ public class alvarez2 {
             boolean estampado = Boolean.parseBoolean(pedidos[3 * i + 2]);
             listaPedidos.add(new Polera(material, talla, estampado));
             
-            String reescribir = readFile("Pedidos.csv") + "\n" + texto;
-            writeFile("Pedidos.csv", reescribir);
+            String reescribir = leerArchivo("Pedidos.csv") + "\n" + texto;
+            escribirArchivo("Pedidos.csv", reescribir);
 
         }
 
@@ -68,9 +68,9 @@ public class alvarez2 {
     }
 
     
-    public static String readFile(String nombre) {//metodo que lee un archivo y devuelve su contenido como String
+    public static String leerArchivo(String direccion) {//metodo que lee un archivo y devuelve su contenido como String
 
-        Path archivo = Paths.get(nombre);
+        Path archivo = Paths.get(direccion);
         String Contenido = "";
         try {
             Contenido = new String(Files.readAllBytes(archivo));
@@ -81,8 +81,8 @@ public class alvarez2 {
     }
 
     
-    public static void writeFile(String nombre, String texto) {//borra la informacion de un archivo y la reescribe con otra
-        Path file = Paths.get(nombre);
+    public static void escribirArchivo(String direccion, String texto) {//borra la informacion de un archivo y la reescribe con otra
+        Path file = Paths.get(direccion);
         try {
             Files.write(file, texto.getBytes());
         } catch (Exception e) {
@@ -102,8 +102,8 @@ public class alvarez2 {
 
         listaPedidos.add(new Polera(material, talla, estampado));
         String reescribir;
-        reescribir = readFile("Pedidos.csv") + "\n" + material + "," + talla + "," + estampado;
-        writeFile("Pedidos", reescribir);
+        reescribir = leerArchivo("Pedidos.csv") + "\n" + material + "," + talla + "," + estampado;
+        escribirArchivo("Pedidos", reescribir);
 
     }
 
@@ -116,7 +116,7 @@ public class alvarez2 {
     
     
     public static void agregarDenuevo(ArrayList<Polera> listaPedidos) {//crea objetos en un array e ingresa informacion recibida de un archivo .csv
-        String texto = readFile("Pedidos.csv");
+        String texto = leerArchivo("Pedidos.csv");
         String[] pedidos = separarPedidos(texto);
         int cantidadPedidos = contarPedidos(texto);
 
@@ -126,15 +126,15 @@ public class alvarez2 {
             boolean estampado = Boolean.parseBoolean(pedidos[3 * i + 2]);
             listaPedidos.add(new Polera(material, talla, estampado));
             
-            String reescribir = readFile("Pedidos.csv") + "\n" + texto;
-            writeFile("Pedidos.csv", reescribir);
+            String reescribir = leerArchivo("Pedidos.csv") + "\n" + texto;
+            escribirArchivo("Pedidos.csv", reescribir);
 
         }
 
     }
 
 
-    public static void menu(ArrayList<Polera> listaPedidos) {
+   public static void menu(ArrayList<Polera> listaPedidos) {
         Scanner read = new Scanner(System.in);
         System.out.print("Inserte 1 si quiere agregar una polera. \n"
                 + "inserte 2 si quiere agregar un pedido. \n"
